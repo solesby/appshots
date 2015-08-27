@@ -1,0 +1,35 @@
+#!/bin/bash
+
+## Copyright (c) 2015 Adam Solesby -- see LICENSE
+
+## This script gathers the most recent 5 screenshots from the simulator (stored on ~/Desktop)
+## and renames them sequentially (newest is screen5; oldest is screen1)
+## It moves them into the named templates directory
+
+## TODO: take 5 as optional command line param
+
+
+if [ "$#" -eq 0 ] ; then
+    echo "Usage: $0 <destination>"
+    exit
+fi
+
+files=`ls -t ~/Desktop/iOS\ Simulator* | head -5`
+
+i=`echo "$files"|wc -l`
+IFS=$'\n'
+
+echo "Gathering $i files"
+echo "$files"
+
+echo " moving to $1"
+mkdir -p "$1"
+
+for f in $files ; do
+    mv "$f" "$1/screen${i}.png"
+    let "i -= 1"
+done
+file $1/screen*
+
+
+

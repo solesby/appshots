@@ -1,0 +1,104 @@
+#!/bin/bash
+
+## Copyright (c) 2015 Adam Solesby -- see LICENSE
+
+## Generate App Store images based on a config file and simulator screenshots using imagemagick
+##
+## Usage: /path/to/generate_store_images [all|device] [preview]
+##
+## In current directory:
+##    appshots.txt -- tab delimited config file for text, screen dimensions, colors, etc
+##    screenshots  -- directory of simulator screenshots  screenshots/<device>/<screen>[1-5].png
+##
+## This will output <device>_<screen>.png for every line in config.
+## It will also append an list of generated images and screenshots to index.html (removing previous runs)
+
+clobber="$1"
+if [ "$1" = "preview" ] ; then preview="all" ; elif [ "$2" = "preview" ] ; then preview="$clobber" ; fi
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+overlay_path="$DIR/overlays"
+config_file=appshots.txt
+convert=/usr/local/bin/convert
+
+if [ ! -f index.html ] ; then cp "$DIR/index.html" index.html ; fi
+grep -v '<!-- appshots' index.html > /tmp/appshots.html && cp /tmp/appshots.html index.html ## remove previous additions
+
+### Poor mans tab delimited parser. NOTE: this is creating global variables, so use extreme caution!
+tsv_headers=`head -1 $config_file`
+function getconfig()
+{
+    ### Defaults
+    lang="en"
+    background="#CCCCCC"; overlay="none";
+    b1bg="$background"; b1color="black"; b1pos="x100+0+0"  ; b1font="Helvetica"; b1size="45"; b1grav="center";
+    b2bg="$background"; b2color="black"; b2pos="x100+0+100"; b2font="Helvetica"; b2size="36"; b2grav="center";
+    
+    i=0
+    IFS=$'\t'
+    for k in $tsv_headers ; do
+        j=0
+        for v in $1 ; do
+            if [ "$i" -eq "$j" ] ; then
+                case "$k" in
+                    lang)        lang="$v"    ;;
+                    device)      device="$v"  ;;  screen)      screen="$v"    ;;
+                    width)       width="$v"   ;;  height)      height="$v"    ;;
+                    overlay)     overlay="$v" ;;  screenPos)   screenPos="$v" ;;
+                    background)  background="$v"; b1bg="$v"; b2bg="$v";       ;;
+                    
+                    b1)      b1="$v"                     ;;    b2)      b2="$v"      ;;
+                    b1pos)   b1pos="$v"                  ;;    b2pos)   b2pos="$v"   ;;
+                    b1bg)    b1bg="$v"    ; b2bg="$v"    ;;    b2bg)    b2bg="$v"    ;;
+                    b1color) b1color="$v" ; b2color="$v" ;;    b2color) b2color="$v" ;;
+                    b1font)  b1font="$v"  ; b2font="$v"  ;;    b2font)  b2font="$v"  ;;
+                    b1size)  b1size="$v"  ; b2size="$v"  ;;    b2size)  b2size="$v"  ;;
+                    b1grav)  b1grav="$v"  ; b1grav="$v"  ;;    b2grav)  b2grav="$v"  ;;
+                esac
+            fi
+            let "j += 1"
+        done
+        let "i += 1"
+    done
+}
+
+function preview() { if [ "$preview" = "$1" ] || [ "$preview" = "all" ] ; then [ $1 ] && open -a Preview ${1}_screen*.png; fi }
+function htmlout() { echo '<!-- appshots -->' "$@" >> index.html; }
+function echoerr() { echo "$@" 1>&2; }
+
+IFS=$'\n'
+last_device=""
+for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; do
+    getconfig "$line"
+
+    if [ "$last_device" != "$device" ] ; then 
+        if [ "${clobber}" = "${device}" ] || [ "$clobber" = "all" ] ; then rm -f ${device}*.png ; fi
+        htmlout "<h3>$device</h3>"
+    fi
+    [ "$last_device" != "$device" ] && preview "$last_device"
+    last_device="$device"
+    
+    dims="${width}x${height}"
+    output_filename="${device}_${screen}.png"
+    source_filename="screenshots/$device/$screen.png"
+    [ -f $overlay ] && overlay_filename="$overlay" || overlay_filename="$overlay_path/$device/$overlay.png"
+
+    if [ ! -s "$output_filename" ] ; then
+        if [ ! -f "$source_filename" ] ; then echoerr "Missing screenshot: ${source_filename}" ; continue ; fi
+        echoerr "Generating $output_filename [$device $screen $dims] $b1"
+        
+        $convert \( -size $dims "xc:$background" \)\
+            "$source_filename" -geometry $screenPos -composite \
+            "$overlay_filename" -composite \
+            \( -size $b1pos -background $b1bg -font $b1font -fill $b1color -pointsize $b1size -gravity $b1grav label:"$b1" \) -gravity northwest -geometry $b1pos -composite \
+            \( -size $b2pos -background $b2bg -font $b2font -fill $b2color -pointsize $b2size -gravity $b2grav label:"$b2" \) -gravity northwest -geometry $b2pos -composite \
+            "$output_filename"
+    
+    else echoerr "File already exists:  $output_filename [$device $screen $dims] $b1" ; fi
+    
+    htmlout "<a href='${output_filename}' class='${device} ${screen} appstore' title='$device $screen $dims $b1'><img src='${output_filename}' alt='${output_filename}' border=0></a>"
+    htmlout "<a href='${source_filename}' class='${device} ${screen} screenshot' title='$device $screen $dims screenshot'><img src='${source_filename}' alt='${source_filename}' border=0></a>"
+
+done
+preview "$last_device"
+htmlout '<p class="generated_date">Generated by <a href="https://github.com/solesby/appshots">appshots</a> on ' `date` '</p></body></html>'

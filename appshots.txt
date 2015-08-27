@@ -1,0 +1,32 @@
+lang	device	screen	width	height	background	screenPos	overlay	b1	b1color	b1pos		b2	b2color	b2pos
+
+en	iPhone4	screen1	640	960	#63CAE6	444x788+95+296	base	This is Screen1 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone4	screen2	640	960	#63CAE6	444x788+95+296	base	This is Screen2 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone4	screen3	640	960	#63CAE6	444x788+95+296	base	This is Screen3 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone4	screen4	640	960	#63CAE6	444x788+95+296	base	This is Screen4 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone4	screen5	960	640	rgba(85,192,224,0.85)	960x640	none	This is Screen5 Blurb1	black	640x90+40+250		This is the second blurb	white	640x70+40+340
+
+en	iPhone5	screen1	640	1136	#63CAE6	444x788+95+296	base	This is Screen1 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone5	screen2	640	1136	#63CAE6	444x788+95+296	base	This is Screen2 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone5	screen3	640	1136	#63CAE6	444x788+95+296	base	This is Screen3 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone5	screen4	640	1136	#63CAE6	444x788+95+296	base	This is Screen4 Blurb1	black	640x100+0+0		This is the second blurb	white	640x90+0+60
+en	iPhone5	screen5	1136	640	rgba(85,192,224,0.85)	1136x640	none	This is Screen5 Blurb1	black	640x90+40+250		This is the second blurb	white	640x70+40+340
+
+en	iPhone6	screen1	750	1334	#63CAE6	542x964+103+325	base	This is Screen1 Blurb1	black	750x100+0+0		This is the second blurb	white	750x90+0+60
+en	iPhone6	screen2	750	1334	#63CAE6	542x964+103+325	base	This is Screen2 Blurb1	black	750x100+0+0		This is the second blurb	white	750x90+0+60
+en	iPhone6	screen3	750	1334	#63CAE6	542x964+103+325	base	This is Screen3 Blurb1	black	750x100+0+0		This is the second blurb	white	750x90+0+60
+en	iPhone6	screen4	750	1334	#63CAE6	542x964+103+325	base	This is Screen4 Blurb1	black	750x100+0+0		This is the second blurb	white	750x90+0+60
+en	iPhone6	screen5	1334	750	rgba(85,192,224,0.85)	1334x750	none	This is Screen5 Blurb1	black	750x90+40+250		This is the second blurb	white	750x70+40+340
+
+en	iPhone6plus	screen1	1242	2208	#63CAE6	900x1600+172+506	base	This is Screen1 Blurb1	black	1242x100+0+0		This is the second blurb	white	1242x90+0+60
+en	iPhone6plus	screen2	1242	2208	#63CAE6	900x1600+172+506	base	This is Screen2 Blurb1	black	1242x100+0+0		This is the second blurb	white	1242x90+0+60
+en	iPhone6plus	screen3	1242	2208	#63CAE6	900x1600+172+506	base	This is Screen3 Blurb1	black	1242x100+0+0		This is the second blurb	white	1242x90+0+60
+en	iPhone6plus	screen4	1242	2208	#63CAE6	900x1600+172+506	base	This is Screen4 Blurb1	black	1242x100+0+0		This is the second blurb	white	1242x90+0+60
+en	iPhone6plus	screen5	2208	1242	rgba(85,192,224,0.85)	2208x1242	none	This is Screen5 Blurb1	black	1242x90+40+250		This is the second blurb	white	1242x70+40+340
+
+en	iPad	screen1	1536	2048	#63CAE6	1138x1517+202+454	base	This is Screen1 Blurb1	black	1536x100+0+0		This is the second blurb	white	1536x90+0+60
+en	iPad	screen2	1536	2048	#63CAE6	1138x1517+202+454	base	This is Screen2 Blurb1	black	1536x100+0+0		This is the second blurb	white	1536x90+0+60
+en	iPad	screen3	1536	2048	#63CAE6	1138x1517+202+454	base	This is Screen3 Blurb1	black	1536x100+0+0		This is the second blurb	white	1536x90+0+60
+en	iPad	screen4	1536	2048	#63CAE6	1138x1517+202+454	base	This is Screen4 Blurb1	black	1536x100+0+0		This is the second blurb	white	1536x90+0+60
+en	iPad	screen5	2048	1536	rgba(85,192,224,0.85)	2048x1536	none	This is Screen5 Blurb1	black	1536x90+40+250		This is the second blurb	white	1536x70+40+340
+
