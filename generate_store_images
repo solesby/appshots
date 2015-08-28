@@ -4,7 +4,7 @@
 
 ## Generate App Store images based on a config file and simulator screenshots using imagemagick
 ##
-## Usage: /path/to/generate_store_images [all|device] [preview]
+## Usage: /path/to/generate_store_images [all|device] [preview|debug]
 ##
 ## In current directory:
 ##    appshots.txt -- tab delimited config file for text, screen dimensions, colors, etc
@@ -15,6 +15,7 @@
 
 clobber="$1"
 if [ "$1" = "preview" ] ; then preview="all" ; elif [ "$2" = "preview" ] ; then preview="$clobber" ; fi
+if [ "$2" = "debug"   ] ; then debug="$clobber"; preview="$clobber"; fi 
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 overlay_path="$DIR/overlays"
@@ -31,29 +32,30 @@ function getconfig()
     ### Defaults
     lang="en"
     background="#CCCCCC"; overlay="none";
-    b1bg="$background"; b1color="black"; b1pos="x100+0+0"  ; b1font="Helvetica"; b1size="45"; b1grav="center";
-    b2bg="$background"; b2color="black"; b2pos="x100+0+100"; b2font="Helvetica"; b2size="36"; b2grav="center";
+    b1pos="1x1+0+0"; b1bg="rgba(80,80,80,0)"; b1color="black"; b1size="45"; b1font="Helvetica"; b1grav="center";
+    b2pos="1x1+0+0"; b2bg="rgba(80,80,80,0)"; b2color="black"; b2size="45"; b2font="Helvetica"; b2grav="center";
+    b3pos="1x1+0+0"; b3bg="rgba(80,80,80,0)"; b3color="black"; b3size="45"; b3font="Helvetica"; b3grav="center";
     
     i=0
     IFS=$'\t'
     for k in $tsv_headers ; do
         j=0
         for v in $1 ; do
-            if [ "$i" -eq "$j" ] ; then
+            if [ "$i" -eq "$j" ] && [ "$v" != "-" ]; then
                 case "$k" in
                     lang)        lang="$v"    ;;
                     device)      device="$v"  ;;  screen)      screen="$v"    ;;
                     width)       width="$v"   ;;  height)      height="$v"    ;;
                     overlay)     overlay="$v" ;;  screenPos)   screenPos="$v" ;;
-                    background)  background="$v"; b1bg="$v"; b2bg="$v";       ;;
+                    background)  background="$v"; b1bg="$v"; b2bg="$v"; b3bg="$v"; ;;
                     
-                    b1)      b1="$v"                     ;;    b2)      b2="$v"      ;;
-                    b1pos)   b1pos="$v"                  ;;    b2pos)   b2pos="$v"   ;;
-                    b1bg)    b1bg="$v"    ; b2bg="$v"    ;;    b2bg)    b2bg="$v"    ;;
-                    b1color) b1color="$v" ; b2color="$v" ;;    b2color) b2color="$v" ;;
-                    b1font)  b1font="$v"  ; b2font="$v"  ;;    b2font)  b2font="$v"  ;;
-                    b1size)  b1size="$v"  ; b2size="$v"  ;;    b2size)  b2size="$v"  ;;
-                    b1grav)  b1grav="$v"  ; b1grav="$v"  ;;    b2grav)  b2grav="$v"  ;;
+                    b1)      b1="$v"                                    ;;    b2)      b2="$v"      ;;    b3)      b3="$v"      ;;
+                    b1pos)   b1pos="$v"                                 ;;    b2pos)   b2pos="$v"   ;;    b3pos)   b3pos="$v"   ;;
+                    b1bg)    b1bg="$v"    ; b2bg="$v"    ; b3bg="$v"    ;;    b2bg)    b2bg="$v"    ;;    b3bg)    b3bg="$v"    ;;
+                    b1color) b1color="$v" ; b2color="$v" ; b3color="$v" ;;    b2color) b2color="$v" ;;    b3color) b3color="$v" ;;
+                    b1font)  b1font="$v"  ; b2font="$v"  ; b3font="$v"  ;;    b2font)  b2font="$v"  ;;    b3font)  b3font="$v"  ;;
+                    b1size)  b1size="$v"  ; b2size="$v"  ; b3size="$v"  ;;    b2size)  b2size="$v"  ;;    b3size)  b3size="$v"  ;;
+                    b1grav)  b1grav="$v"  ; b2grav="$v"  ; b3grav="$v"  ;;    b2grav)  b2grav="$v"  ;;    b3grav)  b3grav="$v"  ;;
                 esac
             fi
             let "j += 1"
@@ -62,6 +64,7 @@ function getconfig()
     done
 }
 
+function dbgcfg()  { if [ "$debug"   = "$1" ] || [ "$debug" = "all" ] ; then b1bg="rgba(255,0,0,0.5)"; b2bg="rgba(0,255,0,0.5)"; fi }
 function preview() { if [ "$preview" = "$1" ] || [ "$preview" = "all" ] ; then [ $1 ] && open -a Preview ${1}_screen*.png; fi }
 function htmlout() { echo '<!-- appshots -->' "$@" >> index.html; }
 function echoerr() { echo "$@" 1>&2; }
@@ -70,6 +73,7 @@ IFS=$'\n'
 last_device=""
 for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; do
     getconfig "$line"
+    dbgcfg "$device"
 
     if [ "$last_device" != "$device" ] ; then 
         if [ "${clobber}" = "${device}" ] || [ "$clobber" = "all" ] ; then rm -f ${device}*.png ; fi
@@ -92,6 +96,7 @@ for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; d
             "$overlay_filename" -composite \
             \( -size $b1pos -background $b1bg -font $b1font -fill $b1color -pointsize $b1size -gravity $b1grav label:"$b1" \) -gravity northwest -geometry $b1pos -composite \
             \( -size $b2pos -background $b2bg -font $b2font -fill $b2color -pointsize $b2size -gravity $b2grav label:"$b2" \) -gravity northwest -geometry $b2pos -composite \
+            \( -size $b3pos -background $b3bg -font $b3font -fill $b3color -pointsize $b3size -gravity $b3grav label:"$b3" \) -gravity northwest -geometry $b3pos -composite \
             "$output_filename"
     
     else echoerr "File already exists:  $output_filename [$device $screen $dims] $b1" ; fi
