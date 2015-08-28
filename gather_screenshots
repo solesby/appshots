@@ -17,7 +17,8 @@ fi
 files=`ls -t ~/Desktop/iOS\ Simulator* | head -5`
 
 i=`echo "$files"|wc -l`
-IFS=$'\n'
+let "i -= 0"
+
 
 echo "Gathering $i files"
 echo "$files"
@@ -25,11 +26,10 @@ echo "$files"
 echo " moving to $1"
 mkdir -p "$1"
 
+IFS=$'\n'
 for f in $files ; do
     mv "$f" "$1/screen${i}.png"
     let "i -= 1"
 done
-file $1/screen*
-
 
 
