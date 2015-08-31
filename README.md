@@ -1,7 +1,9 @@
-I wanted a really simple process to generate app store screenshots for [some of my apps](http://paribuscalc.com). I want to easily generate these from screenshots and configure-once layout.
+I wanted a really simple process to generate app store screenshots for [some of my apps](http://paribuscalc.com). I want to easily generate these from screenshots and a configure-once layout.
 
 <blockquote style="text-align:center">
 <img valign="center" src="http://www.paribuscalc.com/store/screenshots/iPhone5/screen1.png" width="200">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img valign="center" src="https://raw.githubusercontent.com/solesby/appshots/master/overlays/iPhone5/base.png" width="200">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img valign="center" src="http://www.paribuscalc.com/store/iPhone5_screen1.png" width="200">
 </blockquote>
@@ -18,8 +20,8 @@ I welcome any fixes or improvements you want to contribute. Fork away.
 These scripts allow you to:
 
 1. Take 5 screenshots in the simulator (simply press `⌘-S`)
-2. Run `gather_screenshots screenshots/iPhone6`
-3. Run `generate_store_images iPhone6`
+2. Run `gather_screenshots  screenshots/iPhone6`
+3. Run `generate_store_images  iPhone6`
 
 The `gather_screenshots` is optional and simply pulls the most recent screenshots from your desktop (with ugly names like `iOS Simulator Screen Shot Aug 27, 2015, 1.17.21 PM.png`). 
 
@@ -27,9 +29,8 @@ The `generate_store_images` processes the `appshots.txt` config file and the `sc
 
 1. Create proper size app store image with background color
 1. Resize and composite the screenshot
-1. Composite the overlay image (with transparency)
-1. Add `blurb1` text
-1. Add `blurb2` text
+1. Add the device overlay image
+1. Add `blurb1`, `blurb2`, `blurb3` text
 1. Save output file as `<device>_<screen>.png`
 1. Output details to `index.html`
 
@@ -91,11 +92,11 @@ Create folder and set up the configuration. You will need a layout that looks so
     store/screenshots/iPad/screen1.png
     ...
 
-The `appshots.txt` is a tab-delimited config file. You can copy the provided one from the `appshots` project folder and modify it. The coordinates should work as is. The most important thing is to set up your color preferences and "blurbs" that you want to overlay. See below for more [details on appshots.txt](#configuration-format-appshotstxt).
+The `appshots.txt` is a tab-delimited config file. You can copy the [provided config](/solesby/appshots/blob/master/appshots.txt) from the `appshots` install folder and modify it. The coordinates should work as is. The most important thing is to set up your color preferences and "blurbs" that you want to overlay. See below for more [details on appshots.txt](#configuration-format-appshotstxt).
 
 The `screenshots` folder is required. It is organized by `screenshots`/`device`/`screen[1-5].png`. Any device/screen combination not present in the `appshots.txt` or the `screenshots` directory tree will be ignored.
 
-You can optionally provide a `overlays` folder. If you don't the script will use the one provide in the projects folder.
+You can optionally provide a `overlays` folder. If you don't the script will use the one provide in the install folder.
 
 
 
@@ -116,7 +117,10 @@ The second parameter are two options helpful in designing and debugging you conf
 
 `debug` -- this will override the blurb background colors with semi-transparent red, green, or blue. This helps you see your text easier regions without changing your colors in the config.
 
-The first time you run `generate_store_images` it will output an HTML file with the detailsindex.html
+The first time you run `generate_store_images` it will output an HTML file that lets you view original and generated screenshots.
+You can view an example here: [Paribus App Store images](http://www.paribuscalc.com/store/).
+
+You can edit the `index.html`. Only the lines prefixed with `<!-- appshots -->` will be removed when you re-run the script.
 
 ##  Helper:  `gather_screenshots`
 
