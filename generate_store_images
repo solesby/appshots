@@ -64,7 +64,7 @@ function getconfig()
     done
 }
 
-function dbgcfg()  { if [ "$debug"   = "$1" ] || [ "$debug" = "all" ] ; then b1bg="rgba(255,0,0,0.5)"; b2bg="rgba(0,255,0,0.5)"; fi }
+function dbgcfg()  { if [ "$debug"   = "$1" ] || [ "$debug" = "all" ] ; then b1bg="rgba(255,0,0,0.5)"; b2bg="rgba(0,255,0,0.5)"; b3bg="rgba(0,0,255,0.5)"; fi }
 function preview() { if [ "$preview" = "$1" ] || [ "$preview" = "all" ] ; then [ $1 ] && open -a Preview ${1}_screen*.png; fi }
 function htmlout() { echo '<!-- appshots -->' "$@" >> index.html; }
 function echoerr() { echo "$@" 1>&2; }
