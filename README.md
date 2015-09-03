@@ -1,4 +1,4 @@
-I wanted a really simple process to generate app store screenshots for [some of my apps](http://paribuscalc.com). I want to easily generate these from screenshots and a configure-once layout.
+I wanted a really simple process to generate app store screenshots for [some of my apps](http://paribuscalc.com). I wanted to easily (re)generate these from simulator screenshots and layout that I only have to configure one time.
 
 <blockquote style="text-align:center">
 <img valign="center" src="http://www.paribuscalc.com/store/screenshots/iPhone5/screen1.png" width="200">
@@ -96,7 +96,7 @@ The `appshots.txt` is a tab-delimited config file. You can copy the [provided co
 
 The `screenshots` folder is required. It is organized by `screenshots`/`device`/`screen[1-5].png`. Any device/screen combination not present in the `appshots.txt` or the `screenshots` directory tree will be ignored.
 
-You can optionally provide a `overlays` folder. If you don't the script will use the one provide in the install folder.
+You can optionally provide a `overlays` folder. If you don't the script will use the one provide in the install folder. The [Sketch3](http://bohemiancoding.com/sketch/) source file for the provided overlays is provided, so you can also modify them as well.
 
 
 
@@ -107,15 +107,20 @@ When your directory is set up with `screenshots` and `appshots.txt` config you a
 
     /path/to/generate_store_images [all|device] [preview|debug]
 
-This will process each entry in `appshots.txt` and generate an output file in the current directory.
+This will process each entry in `appshots.txt` and generate an output file in the current directory. The script takes two optional command line parameters.
 
-The script takes two optional command line parameters. The first parameter tells the script which files to overwrite. *By default it will not clobber any existing generated images.* The script will always generate images that don't exist. You can specify any single device name, e.g. `iPhone6`, or you can specify `all` to regenerate all devices in the config file.
 
-The second parameter are two options helpful in designing and debugging you config.
+The first parameter tells the script which files to overwrite. *By default it will not clobber any existing generated images.* The script will always generate images that don't exist. 
+
+`device` -- specify any single device name, e.g. `iPhone6`, to regenerate the 5 screenshots just for that device
+
+`all` -- use this to regenerate all devices listed in the config file
+
+The second parameter are two options helpful in designing and debugging your config.
 
 `preview` -- this will open up the `Preview` app and show you all the generated images. It will only open the device (or all) specified in the first parameter.
 
-`debug` -- this will override the blurb background colors with semi-transparent red, green, or blue. This helps you see your text easier regions without changing your colors in the config.
+`debug` -- this will override the blurb background colors with semi-transparent red, green, or blue. This helps you see your text regions easier without changing your colors in the config.
 
 The first time you run `generate_store_images` it will output an HTML file that lets you view original and generated screenshots.
 You can view an example here: [Paribus App Store images](http://www.paribuscalc.com/store/).
@@ -144,9 +149,9 @@ That will move the most recent screenshots from the desktop and name them:
 
 ## Configuration Format: `appshots.txt`
 
-The `appshots.txt` config file is a simple tab-delimited format. The order of the columns don't matter and many have defaults so could be ommitted. If you put a value of `-` it is treated as if empty or unspecified.
+The `appshots.txt` config file is a simple tab-delimited format. The order of the columns don't matter (it uses the header). Many have defaults so could be ommitted. If you put a value of `-` it is treated as if empty or unspecified.
 
-Note since, for some reason, I thought this would be good to write in Bash, the parser is not very robust. So if the script breaks, you probably added something in the config file that confuses it :)
+For some reason, I thought it would be a good idea to write this in Bash, the parser is not very robust. Watch out for empty columns (use `-` instead) and PC newlines (if you open in Excel) as both will confuse the script. So if the script breaks, you probably added something in the config file that confuses it :)
 
     lang        This is the language for the generated image (current unimplemented) [default: en ]
     device      The device name: iPhone4, iPhone5, iPhone6, iPhone6plus, iPad
@@ -166,10 +171,22 @@ Note since, for some reason, I thought this would be good to write in Bash, the 
     b1font      The font used for the blurb text [defualt: Helvetica ]
     b1grav      Alignment of the blurb text: northwest, north, northeast, center, 
                     southwest, south, southeast [default: center]
+    ...
+    b2pos       ( all the same parameters as b1 )
+    ...
+    b3pos       ( all the same parameters as b1 )
+    ...
 
-All the config options like `b1color` are repeated for `b2` and `b3` as well.
 
-Most of these just pass through to `convert`, so you might want to check out [the documentation](http://www.imagemagick.org/script/command-line-options.php) for more info.
+All the config options like `b1color` are repeated for `b2<option>` and `b3<option>` as well. If not specified, they are defaulted to their `b1` equivalent.
+
+Most of these just pass through arguments to `convert`, so you might want to check out [the documentation](http://www.imagemagick.org/script/command-line-options.php) for more info: 
+[pos](http://www.imagemagick.org/script/command-line-options.php#size)
+[size](http://www.imagemagick.org/script/command-line-options.php#pointsize)
+[bg](http://www.imagemagick.org/script/command-line-options.php#background)
+[color](http://www.imagemagick.org/script/command-line-options.php#fill)
+[font](http://www.imagemagick.org/script/command-line-options.php#font)
+[grav](http://www.imagemagick.org/script/command-line-options.php#gravity)
 
 # About the Author
 
