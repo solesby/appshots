@@ -14,7 +14,7 @@ if [ "$#" -eq 0 ] ; then
     exit
 fi
 
-files=`ls -t ~/Desktop/iOS\ Simulator* | head -5`
+files=`ls -t ~/Desktop/Simulator* | head -5`
 
 i=`echo "$files"|wc -l`
 let "i -= 0"
