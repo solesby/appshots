@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<typemap>
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Black"
+     glyphs="SF-Pro-Display-Black.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-BlackI"
+     glyphs="SF-Pro-Display-BlackItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-DisplayB"
+     glyphs="SF-Pro-Display-Bold.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-DisplayBI"
+     glyphs="SF-Pro-Display-BoldItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Heavy"
+     glyphs="SF-Pro-Display-Heavy.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-HeavyI"
+     glyphs="SF-Pro-Display-HeavyItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Light"
+     glyphs="SF-Pro-Display-Light.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-LightI"
+     glyphs="SF-Pro-Display-LightItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Medium"
+     glyphs="SF-Pro-Display-Medium.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-MediumI"
+     glyphs="SF-Pro-Display-MediumItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display"
+     glyphs="SF-Pro-Display-Regular.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-DisplayI"
+     glyphs="SF-Pro-Display-RegularItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Semibold"
+     glyphs="SF-Pro-Display-Semibold.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-SemiboldI"
+     glyphs="SF-Pro-Display-SemiboldItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Thin"
+     glyphs="SF-Pro-Display-Thin.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-ThinI"
+     glyphs="SF-Pro-Display-ThinItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-Ultralight"
+     glyphs="SF-Pro-Display-Ultralight.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Display-UltralightI"
+     glyphs="SF-Pro-Display-UltralightItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-TextB"
+     glyphs="SF-Pro-Text-Bold.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-TextBI"
+     glyphs="SF-Pro-Text-BoldItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-Heavy"
+     glyphs="SF-Pro-Text-Heavy.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-HeavyI"
+     glyphs="SF-Pro-Text-HeavyItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-Light"
+     glyphs="SF-Pro-Text-Light.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-LightI"
+     glyphs="SF-Pro-Text-LightItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-Medium"
+     glyphs="SF-Pro-Text-Medium.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-MediumI"
+     glyphs="SF-Pro-Text-MediumItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text"
+     glyphs="SF-Pro-Text-Regular.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-TextI"
+     glyphs="SF-Pro-Text-RegularItalic.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-Semibold"
+     glyphs="SF-Pro-Text-Semibold.otf"
+     />
+
+  <type
+     format="otf"
+     name="SF-Pro-Text-SemiboldI"
+     glyphs="SF-Pro-Text-SemiboldItalic.otf"
+     />
+
+</typemap>

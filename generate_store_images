@@ -32,9 +32,9 @@ function getconfig()
     ### Defaults
     lang="en"
     background="#CCCCCC"; overlay="none";
-    b1pos="1x1+0+0"; b1bg="rgba(80,80,80,0)"; b1color="black"; b1size="45"; b1font="Helvetica"; b1grav="center";
-    b2pos="1x1+0+0"; b2bg="rgba(80,80,80,0)"; b2color="black"; b2size="45"; b2font="Helvetica"; b2grav="center";
-    b3pos="1x1+0+0"; b3bg="rgba(80,80,80,0)"; b3color="black"; b3size="45"; b3font="Helvetica"; b3grav="center";
+    b1pos="1x1+0+0"; b1bg="rgba(80,80,80,0)"; b1color="black"; b1size="45"; b1font="SF-Pro-Display-Light"; b1grav="center";
+    b2pos="1x1+0+0"; b2bg="rgba(80,80,80,0)"; b2color="black"; b2size="45"; b2font="SF-Pro-Display-Light"; b2grav="center";
+    b3pos="1x1+0+0"; b3bg="rgba(80,80,80,0)"; b3color="black"; b3size="45"; b3font="SF-Pro-Display-Light"; b3grav="center";
     
     i=0
     IFS=$'\t'

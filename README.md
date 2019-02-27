@@ -43,13 +43,17 @@ The primary workhorse of these scripts is `convert` which is part of [ImageMagic
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     
     ## Install ImageMagick via brew
-    brew install imagemagick --with-fontconfig --with-ghostscript --with-librsvg
+    brew install imagemagick
 
-Download or fork this project
+Download or fork this project:
 
     curl -L -O https://github.com/solesby/appshots/archive/master.zip
     
     unzip master.zip && mv appshots-master appshots
+
+Export path to [Apple's San Francisco font](https://developer.apple.com/fonts/):
+
+	export export MAGICK_FONT_PATH=<path to>/appshots/fonts
 
 You should be all set up. The scripts should work from whereever you install them. To test, you can run the scripts on the `sample` folder.
 
