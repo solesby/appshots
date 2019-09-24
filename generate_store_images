@@ -1,6 +1,7 @@
 #!/bin/bash
 
-## Copyright (c) 2015 Adam Solesby -- see MIT LICENSE
+## Copyright (c) 2015-2019 Adam Solesby -- see MIT LICENSE
+## https://github.com/solesby/appshots/
 
 ## Generate App Store images based on a config file and simulator screenshots using imagemagick
 ##

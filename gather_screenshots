@@ -1,6 +1,7 @@
 #!/bin/bash
 
-## Copyright (c) 2015 Adam Solesby -- see MIT LICENSE
+## Copyright (c) 2015-2019 Adam Solesby -- see MIT LICENSE
+## https://github.com/solesby/appshots/
 
 ## This script gathers the most recent 5 screenshots from the simulator (stored on ~/Desktop)
 ## and renames them sequentially (newest is screen5; oldest is screen1)
