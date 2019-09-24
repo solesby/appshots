@@ -16,5 +16,5 @@ Generate the `type.xml`:
 
 Export the font directory environment variable:
 
-`export export MAGICK_FONT_PATH=<path to>/appshots/fonts`
+`export MAGICK_FONT_PATH=<path to>/appshots/fonts`
 

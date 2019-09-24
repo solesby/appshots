@@ -14,7 +14,7 @@ if [ "$#" -eq 0 ] ; then
     exit
 fi
 
-files=`ls -t ~/Desktop/Simulator* | head -5`
+files=`ls -t ~/Desktop/Simulator*png | head -5`
 
 i=`echo "$files"|wc -l`
 let "i -= 0"
@@ -23,12 +23,19 @@ let "i -= 0"
 echo "Gathering $i files"
 echo "$files"
 
-echo " moving to $1"
-mkdir -p "$1"
+DEST="$1"
+
+if [ -e "screenshots" ] ; then
+	DEST="screenshots/${DEST}"
+fi
+
+echo " moving to ${DEST}"
+mkdir -p "${DEST}"
 
 IFS=$'\n'
 for f in $files ; do
-    mv "$f" "$1/screen${i}.png"
+    mv "$f" "${DEST}/screen${i}.png"
+	file "${DEST}/screen${i}.png"
     let "i -= 1"
 done
 

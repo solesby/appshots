@@ -15,7 +15,7 @@
 
 clobber="$1"
 if [ "$1" = "preview" ] ; then preview="all" ; elif [ "$2" = "preview" ] ; then preview="$clobber" ; fi
-if [ "$2" = "debug"   ] ; then debug="$clobber"; preview="$clobber"; fi 
+if [ "$2" = "debug"   ] ; then debug="$clobber"; preview="$clobber"; fi
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 overlay_path="$DIR/overlays"
@@ -35,7 +35,7 @@ function getconfig()
     b1pos="1x1+0+0"; b1bg="rgba(80,80,80,0)"; b1color="black"; b1size="45"; b1font="SF-Pro-Display-Light"; b1grav="center";
     b2pos="1x1+0+0"; b2bg="rgba(80,80,80,0)"; b2color="black"; b2size="45"; b2font="SF-Pro-Display-Light"; b2grav="center";
     b3pos="1x1+0+0"; b3bg="rgba(80,80,80,0)"; b3color="black"; b3size="45"; b3font="SF-Pro-Display-Light"; b3grav="center";
-    
+
     i=0
     IFS=$'\t'
     for k in $tsv_headers ; do
@@ -48,7 +48,7 @@ function getconfig()
                     width)       width="$v"   ;;  height)      height="$v"    ;;
                     overlay)     overlay="$v" ;;  screenPos)   screenPos="$v" ;;
                     background)  background="$v"; b1bg="$v"; b2bg="$v"; b3bg="$v"; ;;
-                    
+
                     b1)      b1="$v"                                    ;;    b2)      b2="$v"      ;;    b3)      b3="$v"      ;;
                     b1pos)   b1pos="$v"                                 ;;    b2pos)   b2pos="$v"   ;;    b3pos)   b3pos="$v"   ;;
                     b1bg)    b1bg="$v"    ; b2bg="$v"    ; b3bg="$v"    ;;    b2bg)    b2bg="$v"    ;;    b3bg)    b3bg="$v"    ;;
@@ -75,22 +75,24 @@ for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; d
     getconfig "$line"
     dbgcfg "$device"
 
-    if [ "$last_device" != "$device" ] ; then 
+    if [ "$last_device" != "$device" ] ; then
         if [ "${clobber}" = "${device}" ] || [ "$clobber" = "all" ] ; then rm -f ${device}*.png ; fi
-        htmlout "<h3>$device</h3>"
+        dims="${width}x${height}"
+        htmlout "<h3>$device <span>$dims</span></h3>"
     fi
     [ "$last_device" != "$device" ] && preview "$last_device"
     last_device="$device"
-    
+
     dims="${width}x${height}"
-    output_filename="${device}_${screen}.png"
     source_filename="screenshots/$device/$screen.png"
+    output_filename="${device}_${screen}.png"
+	[ "$lang" != "en" ] && output_filename="${device}_${screen}_${lang}.png"
     [ -f $overlay ] && overlay_filename="$overlay" || overlay_filename="$overlay_path/$device/$overlay.png"
 
     if [ ! -s "$output_filename" ] ; then
         if [ ! -f "$source_filename" ] ; then echoerr "Missing screenshot: ${source_filename}" ; continue ; fi
-        echoerr "Generating $output_filename [$device $screen $dims] $b1"
-        
+        echoerr "Generating $output_filename [$device $screen $lang $dims] $b1"
+
         $convert \( -size $dims "xc:$background" \)\
             "$source_filename" -geometry $screenPos -composite \
             "$overlay_filename" -composite \
@@ -98,9 +100,9 @@ for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; d
             \( -size $b2pos -background $b2bg -font $b2font -fill $b2color -pointsize $b2size -gravity $b2grav label:"$b2" \) -gravity northwest -geometry $b2pos -composite \
             \( -size $b3pos -background $b3bg -font $b3font -fill $b3color -pointsize $b3size -gravity $b3grav label:"$b3" \) -gravity northwest -geometry $b3pos -composite \
             "$output_filename"
-    
+
     else echoerr "File already exists:  $output_filename [$device $screen $dims] $b1" ; fi
-    
+
     htmlout "<a href='${output_filename}' class='${device} ${screen} appstore' title='$device $screen $dims $b1'><img src='${output_filename}' alt='${output_filename}' border=0></a>"
     htmlout "<a href='${source_filename}' class='${device} ${screen} screenshot' title='$device $screen $dims screenshot'><img src='${source_filename}' alt='${source_filename}' border=0></a>"
 

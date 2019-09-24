@@ -53,7 +53,7 @@ Download or fork this project:
 
 Export path to [Apple's San Francisco font](https://developer.apple.com/fonts/):
 
-	export export MAGICK_FONT_PATH=<path to>/appshots/fonts
+	export MAGICK_FONT_PATH=<path to>/appshots/fonts
 
 You should be all set up. The scripts should work from whereever you install them. To test, you can run the scripts on the `sample` folder.
 
@@ -198,13 +198,54 @@ Most of these just pass through arguments to `convert`, so you might want to che
 [Twitter](http://twitter.com/solesby) &ndash; 
 [Github](http://github.com/solesby)
 
+# Standard Sizes
+
+For future reference, the current standard pixel dimensions of Apple iOS devices.
+Taken from: <https://help.apple.com/app-store-connect/#/devd274dd925>
+
+	iphoneXR 6.5in Optional (iPhone XS Max, iPhone XR) 1242 x 2688 pixels
+
+	iphoneX 5.8in Optional (iPhone X, iPhone XS) 1125 x 2436 pixels
+
+	iphone6plus 5.5in Required (iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus) 1242 x 2208 pixels
+
+	iphone6 4.7in required (iPhone 6, iPhone 6s, iPhone 7, iPhone 8) 750 x 1334 pixels
+
+	iphone5 4.0in required (iPhone SE) 640 x 1136 pixels, 640 x 1096 pixels (without status bar)
+
+	iphone4 3.5in optional (iPhone 4s) 640 x 960 pixels, 640 x 920 pixels (without status bar)
+
+
+	iPadPro12 12.9in optional (iPad Pro (3rd generation)) 2048 x 2732 pixels
+
+	iPadPro11 11in optional (iPad Pro) 1668 x 2388 pixels
+
+	iPadPro10 10.5 inch (iPad Pro) 1668 x 2224 pixels
+
+	ipad 9.7 inch (iPad, iPad mini) 1536 x 2048 pixels, 1536 x 2008 pixels (portrait without status bar)
+	ipad 9.7 inch (iPad, iPad mini)
+    	High Resolution: 
+        	1536 x 2048 pixels, 1536 x 2008 pixels (portrait without status bar)
+        	2048 x 1496 pixels (landscape without status bar)
+        	2048 x 1536 pixels (landscape with status bar)
+    	Standard resolution:
+        	768 x 1004 pixels (portrait without status bar)
+        	768 x 1024 pixels (portrait with status bar)
+        	1024 x 748 pixels (landscape without status bar)
+        	1024 x 768 pixels (landscape with status bar)
+
+    appleTV  Apple TV, 1920 x 1080 pixels, 3840 x 2160 pixels
+
+    appleWatch3  Apple Watch, 312 x 390 pixels (Series 3)
+    appleWatch4  Apple Watch, 368 x 448 pixels (Series 5 and Series 4)
+
 
 # License
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015 Adam Solesby
+Copyright (c) 2015-2019 Adam Solesby
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
