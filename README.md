@@ -138,15 +138,15 @@ For whichever device you want to gather, take 5 screenshots (in desired order) i
 
     cd store
     
-    /path/to/appshots/gather_screenshots   screenshots/iPhone5
+    /path/to/appshots/gather_screenshots   screenshots/iPhone58
 
 That will move the most recent screenshots from the desktop and name them:
 
-    screenshots/iPhone5/screen1.png
-    screenshots/iPhone5/screen2.png
-    screenshots/iPhone5/screen3.png
-    screenshots/iPhone5/screen4.png
-    screenshots/iPhone5/screen5.png
+    screenshots/iPhone58/screen1.png
+    screenshots/iPhone58/screen2.png
+    screenshots/iPhone58/screen3.png
+    screenshots/iPhone58/screen4.png
+    screenshots/iPhone58/screen5.png
 
 ## Configuration Format: `appshots.txt`
 
@@ -155,7 +155,8 @@ The `appshots.txt` config file is a simple tab-delimited format. The order of th
 For some reason, I thought it would be a good idea to write this in Bash, the parser is not very robust. Watch out for empty columns (use `-` instead) and PC newlines (if you open in Excel) as both will confuse the script. So if the script breaks, you probably added something in the config file that confuses it :)
 
     lang        This is the language for the generated image (current unimplemented) [default: en ]
-    device      The device name: iPhone4, iPhone5, iPhone6, iPhone6plus, iPad
+    device      The device slug for filenames: iPhone47, iPhone55, iPhone58, iPhone65, iPad110, iPad129
+    devname     The device name for display: iPhone 4.7"
     screen      The screen name: screen1, screen2, screen3, screen4, screen5
     width       The width of the output image
     height      The height of the output image
@@ -200,27 +201,27 @@ Most of these just pass through arguments to `convert`, so you might want to che
 For future reference, the current standard pixel dimensions of Apple iOS devices.
 Taken from: <https://help.apple.com/app-store-connect/#/devd274dd925>
 
-	iphoneXR 6.5in Optional (iPhone XS Max, iPhone XR) 1242 x 2688 pixels
+	iphone65 6.5in Optional (iPhone XS Max, iPhone XR) 1242 x 2688 pixels
 
-	iphoneX 5.8in Optional (iPhone X, iPhone XS) 1125 x 2436 pixels
+	iphone58 5.8in Optional (iPhone X, iPhone XS) 1125 x 2436 pixels
 
-	iphone6plus 5.5in Required (iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus) 1242 x 2208 pixels
+	iphone55 5.5in Required (iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus) 1242 x 2208 pixels
 
-	iphone6 4.7in required (iPhone 6, iPhone 6s, iPhone 7, iPhone 8) 750 x 1334 pixels
+	iphone47 4.7in required (iPhone 6, iPhone 6s, iPhone 7, iPhone 8) 750 x 1334 pixels
 
-	iphone5 4.0in required (iPhone SE) 640 x 1136 pixels, 640 x 1096 pixels (without status bar)
+	iphone40 4.0in required (iPhone SE) 640 x 1136 pixels, 640 x 1096 pixels (without status bar)
 
-	iphone4 3.5in optional (iPhone 4s) 640 x 960 pixels, 640 x 920 pixels (without status bar)
+	iphone35 3.5in optional (iPhone 4s) 640 x 960 pixels, 640 x 920 pixels (without status bar)
 
 
-	iPadPro12 12.9in optional (iPad Pro (3rd generation)) 2048 x 2732 pixels
+	iPad129 12.9in optional (iPad Pro (3rd generation)) 2048 x 2732 pixels
 
-	iPadPro11 11in optional (iPad Pro) 1668 x 2388 pixels
+	iPad110 11in optional (iPad Pro) 1668 x 2388 pixels
 
-	iPadPro10 10.5 inch (iPad Pro) 1668 x 2224 pixels
+	iPad105 10.5 inch (iPad Pro) 1668 x 2224 pixels
 
-	ipad 9.7 inch (iPad, iPad mini) 1536 x 2048 pixels, 1536 x 2008 pixels (portrait without status bar)
-	ipad 9.7 inch (iPad, iPad mini)
+	iPad97 9.7 inch (iPad, iPad mini) 1536 x 2048 pixels, 1536 x 2008 pixels (portrait without status bar)
+	iPad97 9.7 inch (iPad, iPad mini)
     	High Resolution: 
         	1536 x 2048 pixels, 1536 x 2008 pixels (portrait without status bar)
         	2048 x 1496 pixels (landscape without status bar)
