@@ -44,8 +44,8 @@ function getconfig()
         for v in $1 ; do
             if [ "$i" -eq "$j" ] && [ "$v" != "-" ]; then
                 case "$k" in
-                    lang)        lang="$v"    ;;
-                    device)      device="$v"  ;;  screen)      screen="$v"    ;;
+                    lang)        lang="$v"    ;;  device)      device="$v"    ;;
+                    devname)     devname="$v" ;;  screen)      screen="$v"    ;;
                     width)       width="$v"   ;;  height)      height="$v"    ;;
                     overlay)     overlay="$v" ;;  screenPos)   screenPos="$v" ;;
                     background)  background="$v"; b1bg="$v"; b2bg="$v"; b3bg="$v"; ;;
@@ -79,7 +79,7 @@ for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; d
     if [ "$last_device" != "$device" ] ; then
         if [ "${clobber}" = "${device}" ] || [ "$clobber" = "all" ] ; then rm -f ${device}*.png ; fi
         dims="${width}x${height}"
-        htmlout "<h3>$device <span>$dims</span></h3>"
+        htmlout "<h3>$devname <span>$dims</span></h3>"
     fi
     [ "$last_device" != "$device" ] && preview "$last_device"
     last_device="$device"
@@ -104,8 +104,8 @@ for line in `tail +2 $config_file | grep ^[^#\;] | grep -v '^[[:space:]]*$'` ; d
 
     else echoerr "File already exists:  $output_filename [$device $screen $dims] $b1" ; fi
 
-    htmlout "<a href='${output_filename}' class='${device} ${screen} appstore' title='$device $screen $dims $b1'><img src='${output_filename}' alt='${output_filename}' border=0></a>"
-    htmlout "<a href='${source_filename}' class='${device} ${screen} screenshot' title='$device $screen $dims screenshot'><img src='${source_filename}' alt='${source_filename}' border=0></a>"
+    htmlout "<a href='${output_filename}' class='${device} ${screen} appstore' title='$devname $device $screen $dims $b1'><img src='${output_filename}' alt='${output_filename}' border=0></a>"
+    htmlout "<a href='${source_filename}' class='${device} ${screen} screenshot' title='$devname $device $screen $dims screenshot'><img src='${source_filename}' alt='${source_filename}' border=0></a>"
 
 done
 preview "$last_device"

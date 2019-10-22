@@ -76,24 +76,21 @@ Create folder and set up the configuration. You will need a layout that looks so
 
     store/screenshots/appshots.txt
     
-    store/screenshots/iPhone4
-    store/screenshots/iPhone4/screen1.png
-    store/screenshots/iPhone4/screen2.png
-    store/screenshots/iPhone4/screen3.png
-    store/screenshots/iPhone4/screen4.png
-    store/screenshots/iPhone4/screen5.png
-    store/screenshots/iPhone5
-    store/screenshots/iPhone5/screen1.png
-    store/screenshots/iPhone5/screen2.png
+    store/screenshots/iPhone40
+    store/screenshots/iPhone40/screen1.png
+    store/screenshots/iPhone40/screen2.png
+    store/screenshots/iPhone40/screen3.png
+    store/screenshots/iPhone40/screen4.png
+    store/screenshots/iPhone40/screen5.png
+    store/screenshots/iPhone58
+    store/screenshots/iPhone58/screen1.png
+    store/screenshots/iPhone58/screen2.png
     ...
-    store/screenshots/iPhone6
-    store/screenshots/iPhone6/screen1.png
+    store/screenshots/iPhone65
+    store/screenshots/iPhone65/screen1.png
     ...
-    store/screenshots/iPhone6plus
-    store/screenshots/iPhone6plus/screen1.png
-    ...
-    store/screenshots/iPad
-    store/screenshots/iPad/screen1.png
+    store/screenshots/iPad97
+    store/screenshots/iPad97/screen1.png
     ...
 
 The `appshots.txt` is a tab-delimited config file. You can copy the [provided config](/solesby/appshots/blob/master/appshots.txt) from the `appshots` install folder and modify it. The coordinates should work as is. The most important thing is to set up your color preferences and "blurbs" that you want to overlay. See below for more [details on appshots.txt](#configuration-format-appshotstxt).
